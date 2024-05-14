@@ -18,7 +18,7 @@ args = parser.parse_args()
 
 
 def is_done(year, month, variable):
-    fn = "%s/DCVAE-Climate/raw_datasets/ERA5/%s/%04d-%02d.tfd" % (
+    fn = "%s/DCVAE-Climate/raw_datasets/HG3/%s/%04d-%02d.tfd" % (
         os.getenv("SCRATCH"),
         variable,
         year,
@@ -30,7 +30,7 @@ def is_done(year, month, variable):
 
 
 count = 0
-for year in range(1940, 2022):
+for year in range(1850, 2015):
     for month in range(1, 13):
         if is_done(year, month, args.variable):
             continue

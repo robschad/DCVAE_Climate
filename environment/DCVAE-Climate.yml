@@ -15,12 +15,15 @@ dependencies:
   # ML model building and diagnostics
   # If you don't have a GPU, tensorflow-eigen might be faster
   - tensorflow=2.9.1=gpu_py39hd4ae112_0
+  # For loading GCM data
+  - cube_helper
   # Optional, code formatter
   - black
   # Optional - documentation generator
   - sphinx=7.*
   # Optional - needed only for monitoring jobs
   - tmux
+
 
   # Some packages are only available via pip
   - pip
@@ -36,4 +39,4 @@ dependencies:
 # Replace with the path to your project directory root.
 
 variables:
-  PYTHONPATH: /home/h03/hadpb/Projects/DCVAE_Climate:/home/mo-hadpb/Projects/DCVAE_Climate
+  PYTHONPATH: /home/h05/hadrk/eclipse-workspace/VAE/DCVAE_Climate

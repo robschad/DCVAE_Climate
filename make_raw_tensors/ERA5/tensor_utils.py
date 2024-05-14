@@ -3,13 +3,13 @@
 import numpy as np
 import tensorflow as tf
 
-from get_data.ERA5 import ERA5_monthly
+from get_data.HadGEM3 import HadGEM3_monthly
 from utilities import grids
 
 
 # Load the data for 1 month (on the standard cube).
-def load_raw(year, month, member=None, variable="total_precipitation"):
-    raw = ERA5_monthly.load(
+def load_raw(year, month, member=None, variable="pr"):
+    raw = HadGEM3_monthly.load(
         variable=variable,
         year=year,
         month=month,

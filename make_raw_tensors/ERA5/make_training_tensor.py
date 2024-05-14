@@ -26,7 +26,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 if args.opfile is None:
-    args.opfile = ("%s/DCVAE-Climate/raw_datasets/ERA5/%s/%04d-%02d.tfd") % (
+    args.opfile = ("%s/DCVAE-Climate/raw_datasets/HG3/%s/%04d-%02d.tfd") % (
         os.getenv("SCRATCH"),
         args.variable,
         args.year,
