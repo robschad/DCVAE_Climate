@@ -8,7 +8,7 @@ import sys
 import numpy as np
 
 from utilities import plots, grids
-from get_data.ERA5 import ERA5_monthly
+from get_data.HadGEM3 import HadGEM3_monthly
 
 from normalize import load_fitted, normalize_cube
 
@@ -22,6 +22,8 @@ import argparse
 
 from scipy.stats import gamma
 
+plotdir = '/data/users/hadrk/VAEplots/'
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "--year", help="Year to plot", type=int, required=False, default=1969
@@ -31,9 +33,9 @@ parser.add_argument(
 )
 parser.add_argument(
     "--variable",
-    help="Name of variable to use (mean_sea_level_pressure, 2m_temperature, ...)",
+    help="Name of variable to use (psl, tas, ...)",
     type=str,
-    default="total_precipitation",
+    default="pr",
 )
 args = parser.parse_args()
 
@@ -41,7 +43,7 @@ args = parser.parse_args()
 (shape, location, scale) = load_fitted(args.month, variable=args.variable)
 
 # Load the raw data for the selected month
-raw = ERA5_monthly.load(
+raw = HadGEM3_monthly.load(
     variable=args.variable,
     year=args.year,
     month=args.month,
@@ -85,14 +87,14 @@ axb.add_patch(
 
 # choose actual and normalized data colour maps based on variable
 cmaps = (cmocean.cm.balance, cmocean.cm.balance)
-if args.variable == "total_precipitation":
+if args.variable == "pr":
     cmaps = (cmocean.cm.rain, cmocean.cm.tarn)
-if args.variable == "mean_sea_level_pressure":
+if args.variable == "psl":
     cmaps = (cmocean.cm.diff, cmocean.cm.diff)
 
 
 ax_raw = fig.add_axes([0.02, 0.515, 0.607, 0.455])
-if args.variable == "total_precipitation":
+if args.variable == "pr":
     vMin = 0
 else:
     vMin = np.percentile(raw.data.compressed(), 5)
@@ -120,4 +122,4 @@ ax_hist_normalized = fig.add_axes([0.683, 0.05, 0.303, 0.435])
 plots.plotHistAxes(ax_hist_normalized, normalized, vMin=-0.25, vMax=1.25, bins=25)
 
 
-fig.savefig("monthly.png")
+fig.savefig(plotdir+"monthly.png")

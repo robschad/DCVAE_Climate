@@ -10,11 +10,12 @@ from normalize.ERA5.normalize import (
     unnormalize_cube,
     load_fitted,
 )
+from get_data.HadGEM3 import HadGEM3_monthly
 
 
 # Load the data for 1 month
-def load_raw(year, month, variable="total_precipitation"):
-    raw = ERA5_monthly.load(
+def load_raw(year, month, variable="pr"):
+    raw = HadGEM3_monthly.load(
         variable=variable,
         year=year,
         month=month,

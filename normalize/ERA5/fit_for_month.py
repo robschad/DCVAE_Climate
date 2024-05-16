@@ -90,7 +90,7 @@ enough = count >= 10
 variance = tf.where(enough, variance / count, np.nan)
 
 # Artificially expand under-sea-ice variability in SST
-if args.variable == "sea_surface_temperature":
+if args.variable == "ts":
     variance = tf.where(np.logical_and(enough, mean < 273), variance + 0.5, variance)
 
 # Gamma parameter estimates:

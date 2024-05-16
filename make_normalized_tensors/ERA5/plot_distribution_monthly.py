@@ -30,9 +30,9 @@ parser.add_argument(
 )
 parser.add_argument(
     "--variable",
-    help="Name of variable to use (mean_sea_level_pressure, 2m_temperature, ...)",
+    help="Name of variable to use (psl, tas, ...)",
     type=str,
-    default="total_precipitation",
+    default="pr",
 )
 args = parser.parse_args()
 
@@ -47,7 +47,7 @@ def load_tensor(file_name):
 # Load the fitted values
 raw = tensor_to_cube(
     load_tensor(
-        "%s/DCVAE-Climate/raw_datasets/ERA5/%s/%04d-%02d.tfd"
+        "%s/DCVAE-Climate/raw_datasets/HG3/%s/%04d-%02d.tfd"
         % (os.getenv("SCRATCH"), args.variable, args.year, args.month)
     )
 )
@@ -93,14 +93,14 @@ axb.add_patch(
 
 # choose actual and normalized data colour maps based on variable
 cmaps = (cmocean.cm.balance, cmocean.cm.balance)
-if args.variable == "total_precipitation":
+if args.variable == "pr":
     cmaps = (cmocean.cm.rain, cmocean.cm.tarn)
-if args.variable == "mean_sea_level_pressure":
+if args.variable == "psl":
     cmaps = (cmocean.cm.diff, cmocean.cm.diff)
 
 
 ax_raw = fig.add_axes([0.02, 0.515, 0.607, 0.455])
-if args.variable == "total_precipitation":
+if args.variable == "pr":
     vMin = 0
 else:
     vMin = np.percentile(raw.data.compressed(), 5)

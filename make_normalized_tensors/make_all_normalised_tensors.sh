@@ -3,7 +3,7 @@
 # Make all the normalized tensors
 # Requires pre-made normalization parameters.
 
-(cd ERA5 && ./make_all_tensors.py --variable=2m_temperature)
-(cd ERA5 && ./make_all_tensors.py --variable=sea_surface_temperature)
-(cd ERA5 && ./make_all_tensors.py --variable=mean_sea_level_pressure)
-(cd ERA5 && ./make_all_tensors.py --variable=total_precipitation)
+(cd ERA5 && ./make_all_tensors.py --variable=tas)
+(cd ERA5 && ./make_all_tensors.py --variable=ts)
+(cd ERA5 && ./make_all_tensors.py --variable=psl)
+(cd ERA5 && ./make_all_tensors.py --variable=pr)

@@ -20,10 +20,10 @@ def is_done(month, variable):
 
 count = 0
 for variable in (
-    "2m_temperature",
-    "mean_sea_level_pressure",
-    "total_precipitation",
-    "sea_surface_temperature",
+    "tas",
+    "psl",
+    "pr",
+    "ts",
 ):
     for month in range(1, 13):
         if is_done(month, variable):
